@@ -14,6 +14,6 @@ O intúito desse projeto é fazer uma aplicação onde seja possível cadastrar 
 
 ## EndPoints
 
-|     |     |     |
-| --- | --- |:--- |
-|     |     |     |
+| Enpoint  | Método | Exemplo | Parâmentros     |
+| -------- | ------ |:------- | --------------- |
+| /element | GET    |         | id=(int number) |
