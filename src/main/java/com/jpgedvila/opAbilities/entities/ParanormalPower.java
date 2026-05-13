@@ -15,6 +15,10 @@ public class ParanormalPower {
     private String prerequisite;
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "element_id")
+    private Element element;
+
     public ParanormalPower(){}
 
     public ParanormalPower(Long id, String name, String prerequisite, String description) {
@@ -54,6 +58,14 @@ public class ParanormalPower {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Element getElement() {
+        return element;
+    }
+
+    public void setElement(Element element) {
+        this.element = element;
     }
 
     @Override

@@ -2,7 +2,9 @@ package com.jpgedvila.opAbilities.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_items")
@@ -18,11 +20,23 @@ public class Item {
     private String range;
     private Long critRoll;
     private Long critMultiplier;
+    private boolean isParanormal;
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "element_id")
+    private Element element;
+
+    @OneToMany(mappedBy = "item")
+    private Set<ItemItemProp> itemProperties = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "damage_kind_id")
+    private DamageKind damageKind;
 
     public Item(){}
 
-    public Item(Long id, String name, Long category, Long space, String damage, String range, Long critRoll, Long critMultiplier, String description) {
+    public Item(Long id, String name, Long category, Long space, String damage, String range, Long critRoll, Long critMultiplier, boolean isParanormal, String description) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -31,6 +45,7 @@ public class Item {
         this.range = range;
         this.critRoll = critRoll;
         this.critMultiplier = critMultiplier;
+        this.isParanormal = isParanormal;
         this.description = description;
     }
 
@@ -104,6 +119,38 @@ public class Item {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isParanormal() {
+        return isParanormal;
+    }
+
+    public void setParanormal(boolean paranormal) {
+        isParanormal = paranormal;
+    }
+
+    public Element getElement() {
+        return element;
+    }
+
+    public void setElement(Element element) {
+        this.element = element;
+    }
+
+    public Set<ItemItemProp> getItemProperties() {
+        return itemProperties;
+    }
+
+    public void setItemProperties(Set<ItemItemProp> itemProperties) {
+        this.itemProperties = itemProperties;
+    }
+
+    public DamageKind getDamageKind() {
+        return damageKind;
+    }
+
+    public void setDamageKind(DamageKind damageKind) {
+        this.damageKind = damageKind;
     }
 
     @Override

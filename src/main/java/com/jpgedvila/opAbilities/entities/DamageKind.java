@@ -2,20 +2,25 @@ package com.jpgedvila.opAbilities.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table(name = "tb_damage_types")
-public class DamageType {
+@Table(name = "tb_damage_kind")
+public class DamageKind {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
-    public DamageType(){}
+    @OneToMany(mappedBy = "damageKind")
+    private Set<Item> items = new HashSet<>();
 
-    public DamageType(Long id, String name) {
+    public DamageKind(){}
+
+    public DamageKind(Long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -36,10 +41,18 @@ public class DamageType {
         this.name = name;
     }
 
+    public Set<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Item> items) {
+        this.items = items;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        DamageType that = (DamageType) o;
+        DamageKind that = (DamageKind) o;
         return Objects.equals(id, that.id);
     }
 

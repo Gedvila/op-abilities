@@ -2,7 +2,9 @@ package com.jpgedvila.opAbilities.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_abilities")
@@ -14,6 +16,10 @@ public class Ability {
     private String name;
     private String prerequisite;
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "archetype_id")
+    private Archetype archetype;
 
     public Ability(){}
 
@@ -54,6 +60,14 @@ public class Ability {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Archetype getArchetype() {
+        return archetype;
+    }
+
+    public void setArchetype(Archetype archetype) {
+        this.archetype = archetype;
     }
 
     @Override

@@ -2,11 +2,13 @@ package com.jpgedvila.opAbilities.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table(name = "tb_items_properties")
-public class ItemProperty {
+@Table(name = "tb_items_prop")
+public class ItemProp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,9 +16,12 @@ public class ItemProperty {
     private String name;
     private String description;
 
-    public ItemProperty(){}
+    @OneToMany(mappedBy = "itemProp")
+    private Set<ItemItemProp> properties = new HashSet<>();
 
-    public ItemProperty(Long id, String name, String description) {
+    public ItemProp(){}
+
+    public ItemProp(Long id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -46,10 +51,18 @@ public class ItemProperty {
         this.description = description;
     }
 
+    public Set<ItemItemProp> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Set<ItemItemProp> properties) {
+        this.properties = properties;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        ItemProperty that = (ItemProperty) o;
+        ItemProp that = (ItemProp) o;
         return Objects.equals(id, that.id);
     }
 
