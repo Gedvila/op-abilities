@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ElementService {
@@ -30,5 +29,17 @@ public class ElementService {
         Element element = repository.findById(id).orElseThrow();
 
         return new ElementDTO(element);
+    }
+
+    @Transactional(readOnly = true)
+    public ElementDTO searchByName(String name){
+
+        try {
+            Element element = repository.searchByName(name);
+
+            return new ElementDTO(element);
+        } catch (Exception e){
+            throw new RuntimeException();
+        }
     }
 }

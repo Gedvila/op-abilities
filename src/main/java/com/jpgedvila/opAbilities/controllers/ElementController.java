@@ -31,8 +31,6 @@ public class ElementController {
             result.add(service.findById(id));
         }
 
-
         return ResponseEntity.ok(result);
     }
-
 }
