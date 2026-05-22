@@ -23,5 +23,18 @@ public class ItemPropService {
         return list.stream().map(ItemPropDTO :: new).toList();
     }
 
+    @Transactional(readOnly = true)
+    public ItemPropDTO searchByName(String name){
+        ItemProp entity = repository.searchByName(name);
+
+        return new ItemPropDTO(entity);
+    }
+
+    @Transactional(readOnly = true)
+    public ItemPropDTO findById(Long id){
+        ItemProp entity  = repository.findById(id).orElseThrow();
+
+        return new ItemPropDTO(entity);
+    }
 
 }
