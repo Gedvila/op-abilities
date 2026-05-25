@@ -2,7 +2,7 @@ package com.jpgedvila.opAbilities.dtos;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonPropertyOrder({"fieldName","message"})
+@JsonPropertyOrder({"fieldName", "message"})
 public class FieldMessageDTO {
 
     private String fieldName;

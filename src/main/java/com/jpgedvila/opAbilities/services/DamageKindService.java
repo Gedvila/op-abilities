@@ -1,8 +1,8 @@
 package com.jpgedvila.opAbilities.services;
 
-import com.jpgedvila.opAbilities.dtos.ItemPropDTO;
-import com.jpgedvila.opAbilities.entities.ItemProp;
-import com.jpgedvila.opAbilities.repositories.ItemPropRepository;
+import com.jpgedvila.opAbilities.dtos.DamageKindDTO;
+import com.jpgedvila.opAbilities.entities.DamageKind;
+import com.jpgedvila.opAbilities.repositories.DamageKindRepository;
 import com.jpgedvila.opAbilities.services.exceptions.DatabaseException;
 import com.jpgedvila.opAbilities.services.exceptions.ResourceNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -13,64 +13,51 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class ItemPropService {
+public class DamageKindService {
 
-    private final ItemPropRepository repository;
+    private final DamageKindRepository repository;
 
-    public ItemPropService(ItemPropRepository repository) {
+    public DamageKindService(DamageKindRepository repository) {
         this.repository = repository;
     }
 
     @Transactional(readOnly = true)
-    public List<ItemPropDTO> findAll() {
-        List<ItemProp> list = repository.findAll();
+    public List<DamageKindDTO> findAll() {
+        List<DamageKind> list = repository.findAll();
 
-        return list.stream().map(ItemPropDTO::new).toList();
+        return list.stream().map(DamageKindDTO::new).toList();
     }
 
     @Transactional(readOnly = true)
-    public List<ItemPropDTO> searchByName(String name) {
+    public DamageKindDTO findById(Long id) {
         try {
+            DamageKind entity = repository.getReferenceById(id);
 
-            List<ItemProp> list = repository.searchByName(name);
-
-            return list.stream().map(ItemPropDTO::new).toList();
-        } catch (Exception e) {
-            throw new ResourceNotFoundException("Recurso não encontrado");
-        }
-    }
-
-    @Transactional(readOnly = true)
-    public ItemPropDTO findById(Long id) {
-
-        try {
-            ItemProp entity = repository.findById(id).orElseThrow();
-
-            return new ItemPropDTO(entity);
+            return new DamageKindDTO(entity);
         } catch (Exception e) {
             throw new ResourceNotFoundException("Recurso não encontrado");
         }
     }
 
     @Transactional
-    public ItemPropDTO insert(ItemPropDTO dto) {
-        ItemProp entity = new ItemProp();
-        copyDTOtoEntity(entity, dto);
+    public DamageKindDTO insert(DamageKindDTO dto) {
+        DamageKind entity = new DamageKind();
+        copyDtoToEntity(entity, dto);
 
         entity = repository.save(entity);
 
-        return new ItemPropDTO(entity);
+        return new DamageKindDTO(entity);
     }
 
     @Transactional
-    public ItemPropDTO update(Long id, ItemPropDTO dto) {
+    public DamageKindDTO update(Long id, DamageKindDTO dto) {
         try {
-            ItemProp entity = repository.getReferenceById(id);
-            copyDTOtoEntity(entity, dto);
+            DamageKind entity = repository.getReferenceById(id);
+            copyDtoToEntity(entity, dto);
 
             entity = repository.save(entity);
 
-            return new ItemPropDTO(entity);
+            return new DamageKindDTO(entity);
         } catch (Exception e) {
             throw new ResourceNotFoundException("Recurso não encontrado");
         }
@@ -90,7 +77,8 @@ public class ItemPropService {
         }
     }
 
-    private void copyDTOtoEntity(ItemProp entity, ItemPropDTO dto) {
+    private void copyDtoToEntity(DamageKind entity, DamageKindDTO dto) {
+        entity.setId(dto.getId());
         entity.setName(dto.getName());
         entity.setDescription(dto.getDescription());
     }

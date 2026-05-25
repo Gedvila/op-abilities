@@ -19,7 +19,8 @@ public class ParanormalPower {
     @JoinColumn(name = "element_id")
     private Element element;
 
-    public ParanormalPower(){}
+    public ParanormalPower() {
+    }
 
     public ParanormalPower(Long id, String name, String prerequisite, String description) {
         this.id = id;

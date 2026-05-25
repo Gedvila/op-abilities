@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.time.Instant;
 
-@JsonPropertyOrder({"timestamp","status","error","path"})
+@JsonPropertyOrder({"timestamp", "status", "error", "path"})
 public class CustomErrorDTO {
 
     private Instant timestamp;

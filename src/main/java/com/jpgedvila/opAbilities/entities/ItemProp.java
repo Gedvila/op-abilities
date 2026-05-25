@@ -19,7 +19,8 @@ public class ItemProp {
     @OneToMany(mappedBy = "itemProp")
     private Set<ItemItemProp> properties = new HashSet<>();
 
-    public ItemProp(){}
+    public ItemProp() {
+    }
 
     public ItemProp(Long id, String name, String description) {
         this.id = id;

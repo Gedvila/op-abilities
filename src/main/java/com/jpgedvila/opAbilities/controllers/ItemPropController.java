@@ -1,6 +1,5 @@
 package com.jpgedvila.opAbilities.controllers;
 
-import com.jpgedvila.opAbilities.dtos.ElementDTO;
 import com.jpgedvila.opAbilities.dtos.ItemPropDTO;
 import com.jpgedvila.opAbilities.services.ItemPropService;
 import org.springframework.http.ResponseEntity;
@@ -26,20 +25,16 @@ public class ItemPropController {
         List<ItemPropDTO> list = new ArrayList<>();
 
         if (name.equals("0")) {
-
             list = service.findAll();
-
-            return ResponseEntity.ok().body(list);
         } else {
-
             list = service.searchByName(name);
-
-            return ResponseEntity.ok().body(list);
         }
+
+        return ResponseEntity.ok().body(list);
     }
 
     @PutMapping
-    public ResponseEntity<ItemPropDTO> update(Long id, ItemPropDTO dto) {
+    public ResponseEntity<ItemPropDTO> update(@RequestParam(name = "id") Long id, @RequestBody ItemPropDTO dto) {
         dto = service.update(id, dto);
 
         return ResponseEntity.ok().body(dto);
@@ -49,8 +44,7 @@ public class ItemPropController {
     public ResponseEntity<ItemPropDTO> insertElement(@RequestBody ItemPropDTO dto) {
         dto = service.insert(dto);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("?id={id}")
-                .buildAndExpand(dto.getId()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("?id={id}").buildAndExpand(dto.getId()).toUri();
 
         return ResponseEntity.created(uri).body(dto);
     }

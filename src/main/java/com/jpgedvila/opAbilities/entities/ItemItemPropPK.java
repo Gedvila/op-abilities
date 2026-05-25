@@ -1,7 +1,5 @@
 package com.jpgedvila.opAbilities.entities;
 
-import jakarta.persistence.*;
-
 import java.util.Objects;
 
 
@@ -11,7 +9,8 @@ public class ItemItemPropPK {
 
     private Long itemProp;
 
-    public ItemItemPropPK(){}
+    public ItemItemPropPK() {
+    }
 
     public Long getItem() {
         return item;

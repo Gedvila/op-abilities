@@ -34,7 +34,8 @@ public class Item {
     @JoinColumn(name = "damage_kind_id")
     private DamageKind damageKind;
 
-    public Item(){}
+    public Item() {
+    }
 
     public Item(Long id, String name, Long category, Long space, String damage, String range, Long critRoll, Long critMultiplier, boolean isParanormal, String description) {
         this.id = id;

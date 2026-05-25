@@ -2,9 +2,7 @@ package com.jpgedvila.opAbilities.entities;
 
 import jakarta.persistence.*;
 
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "tb_abilities")
@@ -21,7 +19,8 @@ public class Ability {
     @JoinColumn(name = "archetype_id")
     private Archetype archetype;
 
-    public Ability(){}
+    public Ability() {
+    }
 
     public Ability(Long id, String name, String prerequisite, String description) {
         this.id = id;

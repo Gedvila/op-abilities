@@ -21,9 +21,10 @@ public class Element {
     @OneToMany(mappedBy = "element")
     private Set<Item> items = new HashSet<>();
 
-    public Element(){}
+    public Element() {
+    }
 
-    public Element(Long id, String name){
+    public Element(Long id, String name) {
         this.id = id;
         this.name = name;
     }

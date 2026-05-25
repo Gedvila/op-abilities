@@ -18,9 +18,10 @@ public class Archetype {
     @OneToMany(mappedBy = "archetype")
     private Set<Ability> ability = new HashSet<>();
 
-    public Archetype(){}
+    public Archetype() {
+    }
 
-    public Archetype(Long id,String name) {
+    public Archetype(Long id, String name) {
         this.id = id;
         this.name = name;
     }
