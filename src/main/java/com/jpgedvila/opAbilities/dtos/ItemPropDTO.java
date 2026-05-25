@@ -1,7 +1,9 @@
 package com.jpgedvila.opAbilities.dtos;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.jpgedvila.opAbilities.entities.ItemProp;
 
+@JsonPropertyOrder({"id","name","description"})
 public class ItemPropDTO {
 
     private Long id;
