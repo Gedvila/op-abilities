@@ -50,7 +50,7 @@ public class ArchetypeController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> delete(@RequestParam(name = "id") Long id){
+    public ResponseEntity<Void> delete(@RequestParam(name = "id") Long id) {
         service.delete(id);
 
         return ResponseEntity.noContent().build();
