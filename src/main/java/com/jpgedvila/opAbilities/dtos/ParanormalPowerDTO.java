@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.jpgedvila.opAbilities.entities.Element;
 import com.jpgedvila.opAbilities.entities.ParanormalPower;
 
-@JsonPropertyOrder({"id","name","prerequisite","description","element"})
+@JsonPropertyOrder({"id", "name", "prerequisite", "description", "element"})
 public class ParanormalPowerDTO {
 
     private Long id;
@@ -12,24 +12,28 @@ public class ParanormalPowerDTO {
     private String prerequisite;
     private String description;
     private Element element;
+    private String affinity;
 
-    public ParanormalPowerDTO(Long id, String name, String prerequisite, String description, Element element) {
+    public ParanormalPowerDTO(Long id, String name, String prerequisite, String description, Element element, String affinity) {
         this.id = id;
         this.name = name;
         this.prerequisite = prerequisite;
         this.description = description;
         this.element = element;
+        this.affinity = affinity;
     }
 
-    public ParanormalPowerDTO(ParanormalPower entity){
+    public ParanormalPowerDTO(ParanormalPower entity) {
         id = entity.getId();
         name = entity.getName();
         prerequisite = entity.getPrerequisite();
         description = entity.getDescription();
         element = entity.getElement();
+        affinity = entity.getAffinity();
     }
 
-    public ParanormalPowerDTO(){}
+    public ParanormalPowerDTO() {
+    }
 
     public Long getId() {
         return id;
@@ -49,5 +53,9 @@ public class ParanormalPowerDTO {
 
     public Element getElement() {
         return element;
+    }
+
+    public String getAffinity() {
+        return affinity;
     }
 }

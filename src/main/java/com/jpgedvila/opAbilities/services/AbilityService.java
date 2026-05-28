@@ -1,8 +1,8 @@
 package com.jpgedvila.opAbilities.services;
 
-import com.jpgedvila.opAbilities.dtos.ParanormalPowerDTO;
-import com.jpgedvila.opAbilities.entities.ParanormalPower;
-import com.jpgedvila.opAbilities.repositories.ParanormalPowerRepository;
+import com.jpgedvila.opAbilities.dtos.AbilityDTO;
+import com.jpgedvila.opAbilities.entities.Ability;
+import com.jpgedvila.opAbilities.repositories.AbilityRepository;
 import com.jpgedvila.opAbilities.services.exceptions.DatabaseException;
 import com.jpgedvila.opAbilities.services.exceptions.ResourceNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -13,43 +13,41 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class ParanormalPowerService {
+public class AbilityService {
 
-    private final ParanormalPowerRepository repository;
-
-    public ParanormalPowerService(ParanormalPowerRepository repository) {
+    private final AbilityRepository repository;
+    public AbilityService(AbilityRepository repository){
         this.repository = repository;
     }
 
     @Transactional(readOnly = true)
-    public Page<ParanormalPowerDTO> findAll(String name, Pageable pageable) {
-        Page<ParanormalPower> result = repository.searchByName(name, pageable);
+    public Page<AbilityDTO> findAll(String name, Pageable pageable){
+        Page<Ability> result = repository.searchByName(name,pageable);
 
-        return result.map(ParanormalPowerDTO::new);
+        return result.map(AbilityDTO :: new);
     }
 
     @Transactional
-    public ParanormalPowerDTO insert(ParanormalPowerDTO dto) {
-        ParanormalPower entity = new ParanormalPower();
-        copyDtoToEntity(entity, dto);
+    public AbilityDTO insert(AbilityDTO dto){
+        Ability entity = new Ability();
+        copyDtoToEntity(entity,dto);
 
         entity = repository.save(entity);
 
-        return new ParanormalPowerDTO(entity);
+        return new AbilityDTO(entity);
     }
 
     @Transactional
-    public ParanormalPowerDTO update(Long id, ParanormalPowerDTO dto) {
+    public AbilityDTO update(Long id, AbilityDTO dto){
         try {
-
-            ParanormalPower entity = repository.getReferenceById(id);
-            copyDtoToEntity(entity, dto);
+            Ability entity = repository.getReferenceById(id);
+            copyDtoToEntity(entity,dto);
 
             entity = repository.save(entity);
 
-            return new ParanormalPowerDTO(entity);
+            return new AbilityDTO(entity);
         } catch (Exception e) {
-            throw new ResourceNotFoundException("Poder não encontrado");
+            throw new ResourceNotFoundException("Habilidade não encontrada");
         }
     }
 
@@ -67,12 +65,11 @@ public class ParanormalPowerService {
         }
     }
 
-    private void copyDtoToEntity(ParanormalPower entity, ParanormalPowerDTO dto) {
+    private void copyDtoToEntity(Ability entity, AbilityDTO dto){
         entity.setId(dto.getId());
         entity.setName(dto.getName());
         entity.setPrerequisite(dto.getPrerequisite());
         entity.setDescription(dto.getDescription());
-        entity.setAffinity(dto.getAffinity());
-        entity.setElement(dto.getElement());
+        entity.setArchetype(dto.getArchetype());
     }
 }

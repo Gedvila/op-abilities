@@ -14,6 +14,7 @@ public class ParanormalPower {
     private String name;
     private String prerequisite;
     private String description;
+    private String affinity;
 
     @ManyToOne
     @JoinColumn(name = "element_id")
@@ -22,11 +23,12 @@ public class ParanormalPower {
     public ParanormalPower() {
     }
 
-    public ParanormalPower(Long id, String name, String prerequisite, String description) {
+    public ParanormalPower(Long id, String name, String prerequisite, String description, String affinity) {
         this.id = id;
         this.name = name;
         this.prerequisite = prerequisite;
         this.description = description;
+        this.affinity = affinity;
     }
 
     public Long getId() {
@@ -67,6 +69,14 @@ public class ParanormalPower {
 
     public void setElement(Element element) {
         this.element = element;
+    }
+
+    public String getAffinity() {
+        return affinity;
+    }
+
+    public void setAffinity(String affinity) {
+        this.affinity = affinity;
     }
 
     @Override

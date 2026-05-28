@@ -13,3 +13,5 @@ INSERT INTO tb_damage_kind(name, description) VALUES ('Corte','Armas afiadas, co
 INSERT INTO tb_damage_kind(name, description) VALUES ('Eletricidade','Alguns rituais, itens e perigos naturais (como um relâmpago) causam dano deste tipo.');
 INSERT INTO tb_damage_kind(name, description) VALUES ('Fogo','Causado por calor e chamas, tanto naturais quanto conjuradas por rituais.');
 INSERT INTO tb_damage_kind(name, description) VALUES ('Frio','Alguns rituais, além de clima severo, causam dano de frio.');
+
+INSERT INTO tb_paranormal_powers(name,prerequisite,description,affinity,element_id) VALUES ('Precognição','Conhecimento 1','Você possui um “sexto sentido” que o avisa do perigo antes que ele aconteça. Você recebe +2 em Defesa e em testes de resistência.','você fica imune à condição desprevenido',4);
