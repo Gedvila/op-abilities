@@ -10,4 +10,6 @@ public interface ElementRepository extends JpaRepository<Element, Long> {
 
     @Query("SELECT obj FROM Element obj WHERE UPPER(obj.name) LIKE  UPPER(CONCAT('%',:name,'%'))")
     Element searchByName(String name);
+
+    Element findByName(String name);
 }

@@ -11,10 +11,10 @@ public class ParanormalPowerDTO {
     private String name;
     private String prerequisite;
     private String description;
-    private Element element;
+    private String element;
     private String affinity;
 
-    public ParanormalPowerDTO(Long id, String name, String prerequisite, String description, Element element, String affinity) {
+    public ParanormalPowerDTO(Long id, String name, String prerequisite, String description, String element, String affinity) {
         this.id = id;
         this.name = name;
         this.prerequisite = prerequisite;
@@ -28,7 +28,7 @@ public class ParanormalPowerDTO {
         name = entity.getName();
         prerequisite = entity.getPrerequisite();
         description = entity.getDescription();
-        element = entity.getElement();
+        element = entity.getElement().getName();
         affinity = entity.getAffinity();
     }
 
@@ -51,7 +51,7 @@ public class ParanormalPowerDTO {
         return description;
     }
 
-    public Element getElement() {
+    public String getElement() {
         return element;
     }
 

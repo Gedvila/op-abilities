@@ -2,6 +2,7 @@ package com.jpgedvila.opAbilities.services;
 
 import com.jpgedvila.opAbilities.dtos.ParanormalPowerDTO;
 import com.jpgedvila.opAbilities.entities.ParanormalPower;
+import com.jpgedvila.opAbilities.repositories.ElementRepository;
 import com.jpgedvila.opAbilities.repositories.ParanormalPowerRepository;
 import com.jpgedvila.opAbilities.services.exceptions.DatabaseException;
 import com.jpgedvila.opAbilities.services.exceptions.ResourceNotFoundException;
@@ -16,9 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class ParanormalPowerService {
 
     private final ParanormalPowerRepository repository;
+    private final ElementRepository elementRepository;
 
-    public ParanormalPowerService(ParanormalPowerRepository repository) {
+    public ParanormalPowerService(ParanormalPowerRepository repository, ElementRepository elementRepository) {
         this.repository = repository;
+        this.elementRepository = elementRepository;
     }
 
     @Transactional(readOnly = true)
@@ -73,6 +76,6 @@ public class ParanormalPowerService {
         entity.setPrerequisite(dto.getPrerequisite());
         entity.setDescription(dto.getDescription());
         entity.setAffinity(dto.getAffinity());
-        entity.setElement(dto.getElement());
+        entity.setElement(elementRepository.findByName(dto.getElement()));
     }
 }
