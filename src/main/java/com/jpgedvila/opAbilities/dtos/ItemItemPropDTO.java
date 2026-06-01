@@ -1,11 +1,13 @@
 package com.jpgedvila.opAbilities.dtos;
 
+import com.jpgedvila.opAbilities.entities.ItemItemProp;
+
 public class ItemItemPropDTO {
 
-    private Long itemId;
-    private Long propId;
     private String propName;
 
-
+    public ItemItemPropDTO(ItemItemProp itemItemProp){
+        propName = itemItemProp.getItemProp().getName();
+    }
 
 }

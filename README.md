@@ -10,7 +10,6 @@ O projeto OpAbilities é desenvolvido por um mestre de RPG de Ordem Paranormal q
 
 O intúito desse projeto é fazer uma aplicação onde seja possível cadastrar itens e habilidades de forma manual ou automatizada com a seleção de páginas em um pdf e sua classificação baseada em "tags" para procura mais eficiênte e categorizada.
 
----
 ## Arquitetura
 A API segue uma arquitetura de camadas, onde cada camada possui suas responsabilidades e funções se interconectando através da injeção de componentes.
 
