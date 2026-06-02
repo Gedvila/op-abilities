@@ -2,7 +2,9 @@ package com.jpgedvila.opAbilities.services;
 
 import com.jpgedvila.opAbilities.dtos.AbilityDTO;
 import com.jpgedvila.opAbilities.entities.Ability;
+import com.jpgedvila.opAbilities.entities.Archetype;
 import com.jpgedvila.opAbilities.repositories.AbilityRepository;
+import com.jpgedvila.opAbilities.repositories.ArchetypeRepository;
 import com.jpgedvila.opAbilities.services.exceptions.DatabaseException;
 import com.jpgedvila.opAbilities.services.exceptions.ResourceNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -16,8 +18,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class AbilityService {
 
     private final AbilityRepository repository;
-    public AbilityService(AbilityRepository repository){
+    private final ArchetypeRepository archetypeRepository;
+    public AbilityService(AbilityRepository repository, ArchetypeRepository archetypeRepository){
         this.repository = repository;
+        this.archetypeRepository = archetypeRepository;
     }
 
     @Transactional(readOnly = true)
@@ -70,6 +74,6 @@ public class AbilityService {
         entity.setName(dto.getName());
         entity.setPrerequisite(dto.getPrerequisite());
         entity.setDescription(dto.getDescription());
-        entity.setArchetype(dto.getArchetype());
+        entity.setArchetype(archetypeRepository.findByName(dto.getArchetype()));
     }
 }

@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ArchetypeRepository extends JpaRepository<Archetype, Long> {
+
+    Archetype findByName(String name);
 }

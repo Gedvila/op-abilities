@@ -1,12 +1,13 @@
 package com.jpgedvila.opAbilities.dtos;
 
-import com.jpgedvila.opAbilities.entities.*;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.jpgedvila.opAbilities.entities.Item;
+import com.jpgedvila.opAbilities.entities.ItemItemProp;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
+@JsonPropertyOrder({"id","name","category","space"," damage", "range","critRoll","critMultiplier","isParanormal","description","element","itemProperties","damageKind"})
 public class ItemDTO {
 
     private Long id;
@@ -45,7 +46,7 @@ public class ItemDTO {
         this.damageKind = damageKind;
     }
 
-    public ItemDTO(Item entity){
+    public ItemDTO(Item entity) {
         id = entity.getId();
         name = entity.getName();
         category = entity.getCategory();
@@ -55,14 +56,71 @@ public class ItemDTO {
         critRoll = entity.getCritRoll();
         critMultiplier = entity.getCritMultiplier();
         isParanormal = entity.isParanormal();
+        if (isParanormal) {
+            element = entity.getElement().getName();
+        } else {
+            element = "";
+        }
         description = entity.getDescription();
-        element = entity.getElement().getName();
+
         damageKind = entity.getDamageKind().getName();
 
-//        for (ItemItemProp prop : entity.getItemProperties()){
-//            ItemProp itemProp = new ItemProp(prop);
-//
-//            itemProperties.add(itemProp.getName());
-//        }
+        for (ItemItemProp prop : entity.getItemProperties()) {
+            ItemItemPropDTO itemProp = new ItemItemPropDTO(prop);
+
+            itemProperties.add(itemProp.getPropName());
+        }
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Long getCategory() {
+        return category;
+    }
+
+    public Long getSpace() {
+        return space;
+    }
+
+    public String getDamage() {
+        return damage;
+    }
+
+    public String getRange() {
+        return range;
+    }
+
+    public Long getCritRoll() {
+        return critRoll;
+    }
+
+    public Long getCritMultiplier() {
+        return critMultiplier;
+    }
+
+    public boolean isParanormal() {
+        return isParanormal;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getElement() {
+        return element;
+    }
+
+    public List<String> getItemProperties() {
+        return itemProperties;
+    }
+
+    public String getDamageKind() {
+        return damageKind;
     }
 }

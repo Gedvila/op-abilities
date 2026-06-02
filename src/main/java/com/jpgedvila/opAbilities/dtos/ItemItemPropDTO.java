@@ -10,4 +10,13 @@ public class ItemItemPropDTO {
         propName = itemItemProp.getItemProp().getName();
     }
 
+    public ItemItemPropDTO(){}
+
+    public ItemItemPropDTO(String propName) {
+        this.propName = propName;
+    }
+
+    public String getPropName() {
+        return propName;
+    }
 }

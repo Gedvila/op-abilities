@@ -9,7 +9,7 @@ public class AbilityDTO {
     private String name;
     private String prerequisite;
     private String description;
-    private Archetype archetype;
+    private String archetype;
 
     public AbilityDTO(){}
 
@@ -18,10 +18,10 @@ public class AbilityDTO {
         name = entity.getName();
         prerequisite = entity.getPrerequisite();
         description = entity.getDescription();
-        archetype = entity.getArchetype();
+        archetype = entity.getArchetype().getName();
     }
 
-    public AbilityDTO(Long id, String name, String prerequisite, String description, Archetype archetype) {
+    public AbilityDTO(Long id, String name, String prerequisite, String description, String archetype) {
         this.id = id;
         this.name = name;
         this.prerequisite = prerequisite;
@@ -45,7 +45,7 @@ public class AbilityDTO {
         return description;
     }
 
-    public Archetype getArchetype() {
+    public String getArchetype() {
         return archetype;
     }
 }
